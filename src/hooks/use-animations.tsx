@@ -7,6 +7,7 @@ export function useAnimateOnView(threshold = 0.15) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    setVisible(false); // reset on client for animation
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
