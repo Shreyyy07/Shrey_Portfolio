@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, type ReactNode } from "react";
 
 export function useAnimateOnView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true); // SSR: visible by default
 
   useEffect(() => {
     const el = ref.current;
@@ -24,9 +24,12 @@ export function useAnimateOnView(threshold = 0.15) {
 }
 
 export function useMountAnimation(delay = 0) {
-  const [visible, setVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [visible, setVisible] = useState(true); // SSR: visible by default
   useEffect(() => {
-    const t = setTimeout(() => setVisible(true), delay);
+    setMounted(true);
+    setVisible(false); // client: hide then animate
+    const t = setTimeout(() => setVisible(true), delay + 50);
     return () => clearTimeout(t);
   }, [delay]);
   return visible;
