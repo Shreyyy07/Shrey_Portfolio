@@ -1,4 +1,4 @@
-import { Github, Linkedin, ArrowUp, Heart } from "lucide-react";
+import { GitBranch, ExternalLink, ArrowUp, Heart } from "lucide-react";
 import { PERSONAL_INFO } from "@/lib/constants";
 
 export function Footer() {
@@ -11,10 +11,10 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <a href={PERSONAL_INFO.social.github} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-primary" aria-label="GitHub">
-              <Github className="h-5 w-5" />
+              <GitBranch className="h-5 w-5" />
             </a>
             <a href={PERSONAL_INFO.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-primary" aria-label="LinkedIn">
-              <Linkedin className="h-5 w-5" />
+              <ExternalLink className="h-5 w-5" />
             </a>
           </div>
           <div className="flex items-center gap-4">

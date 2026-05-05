@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { PERSONAL_INFO } from "@/lib/constants";
-import { Mail, Phone, MapPin, Send, Github, Linkedin, ExternalLink } from "lucide-react";
+import { Mail, Phone, MapPin, Send, GitBranch, ExternalLink } from "lucide-react";
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
@@ -127,8 +127,8 @@ export function Contact() {
               <p className="mb-4 text-sm font-medium text-muted-foreground">Find me on</p>
               <div className="flex gap-3">
                 {[
-                  { href: PERSONAL_INFO.social.github, icon: Github, label: "GitHub" },
-                  { href: PERSONAL_INFO.social.linkedin, icon: Linkedin, label: "LinkedIn" },
+                  { href: PERSONAL_INFO.social.github, icon: GitBranch, label: "GitHub" },
+                  { href: PERSONAL_INFO.social.linkedin, icon: ExternalLink, label: "LinkedIn" },
                   { href: PERSONAL_INFO.social.leetcode, icon: ExternalLink, label: "LeetCode" },
                   { href: PERSONAL_INFO.social.codolio, icon: ExternalLink, label: "Codolio" },
                 ].map(({ href, icon: Icon, label }) => (

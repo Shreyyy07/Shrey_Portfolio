@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, ExternalLink, ChevronDown } from "lucide-react";
+import { GitBranch, ExternalLink, ChevronDown } from "lucide-react";
 import { PERSONAL_INFO } from "@/lib/constants";
 
 function useTypewriter(words: string[], typeSpeed = 80, deleteSpeed = 50, pauseTime = 2000) {
@@ -125,8 +125,8 @@ export function Hero() {
             className="mt-10 flex items-center justify-center gap-5"
           >
             {[
-              { href: PERSONAL_INFO.social.github, icon: Github, label: "GitHub" },
-              { href: PERSONAL_INFO.social.linkedin, icon: Linkedin, label: "LinkedIn" },
+              { href: PERSONAL_INFO.social.github, icon: GitBranch, label: "GitHub" },
+              { href: PERSONAL_INFO.social.linkedin, icon: ExternalLink, label: "LinkedIn" },
               { href: PERSONAL_INFO.social.leetcode, icon: ExternalLink, label: "LeetCode" },
             ].map(({ href, icon: Icon, label }) => (
               <a

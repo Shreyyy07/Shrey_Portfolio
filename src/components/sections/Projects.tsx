@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { PROJECTS } from "@/lib/constants";
-import { Github, ExternalLink } from "lucide-react";
+import { GitBranch, ExternalLink } from "lucide-react";
 
 export function Projects() {
   const featured = PROJECTS.filter((p) => p.featured);
@@ -69,7 +69,7 @@ export function Projects() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
-                  <Github className="h-4 w-4" /> Code
+                  <GitBranch className="h-4 w-4" /> Code
                 </a>
               </div>
             </motion.div>
