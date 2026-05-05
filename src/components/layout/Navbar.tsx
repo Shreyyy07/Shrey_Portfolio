@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
 import { NAV_LINKS, PERSONAL_INFO } from "@/lib/constants";
+import { useMountAnimation } from "@/hooks/use-animations";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const show = useMountAnimation(100);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -14,13 +15,10 @@ export function Navbar() {
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass-card shadow-lg" : "bg-transparent"
-      }`}
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        show ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+      } ${scrolled ? "glass-card shadow-lg" : "bg-transparent"}`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#home" className="font-heading text-xl font-bold text-gradient">
@@ -41,7 +39,7 @@ export function Navbar() {
             href={PERSONAL_INFO.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-all hover:glow-cyan"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-all hover:shadow-[0_0_15px_oklch(0.82_0.15_195/30%)]"
           >
             <Download className="h-4 w-4" />
             Resume
@@ -57,41 +55,31 @@ export function Navbar() {
         </button>
       </div>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="glass-card border-t border-glass-border md:hidden"
-          >
-            <div className="flex flex-col gap-4 px-6 py-6">
-              {NAV_LINKS.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-muted-foreground transition-colors hover:text-primary"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
+      {mobileOpen && (
+        <div className="glass-card border-t border-glass-border md:hidden">
+          <div className="flex flex-col gap-4 px-6 py-6">
+            {NAV_LINKS.map((link) => (
               <a
-                href={PERSONAL_INFO.resume}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="text-muted-foreground transition-colors hover:text-primary"
               >
-                <Download className="h-4 w-4" />
-                Resume
+                {link.label}
               </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+            ))}
+            <a
+              href={PERSONAL_INFO.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+            >
+              <Download className="h-4 w-4" />
+              Resume
+            </a>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 }
