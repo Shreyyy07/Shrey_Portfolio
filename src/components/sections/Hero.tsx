@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { GitBranch, ExternalLink, ChevronDown } from "lucide-react";
 import { PERSONAL_INFO } from "@/lib/constants";
+import { FadeIn, useMountAnimation } from "@/hooks/use-animations";
 
 function useTypewriter(words: string[], typeSpeed = 80, deleteSpeed = 50, pauseTime = 2000) {
   const [text, setText] = useState("");
@@ -35,70 +35,54 @@ function useTypewriter(words: string[], typeSpeed = 80, deleteSpeed = 50, pauseT
 
 export function Hero() {
   const rotatingText = useTypewriter(PERSONAL_INFO.rotatingKeywords);
+  const show = useMountAnimation(100);
 
   return (
     <section id="home" className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      {/* Background grid */}
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-40" />
-
-      {/* Gradient orbs */}
       <div className="pointer-events-none absolute -left-40 -top-40 h-80 w-80 rounded-full bg-primary/20 blur-[120px]" />
       <div className="pointer-events-none absolute -bottom-40 -right-40 h-80 w-80 rounded-full bg-secondary/20 blur-[120px]" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mb-4 text-sm font-medium tracking-wider text-primary uppercase"
-          >
+        <FadeIn delay={100}>
+          <p className="mb-4 text-sm font-medium tracking-wider text-primary uppercase">
             Hello, World! 👋
-          </motion.p>
+          </p>
+        </FadeIn>
 
+        <FadeIn delay={200}>
           <h1 className="font-heading text-5xl font-bold leading-tight md:text-7xl">
             I&apos;m{" "}
             <span className="text-gradient">{PERSONAL_INFO.name}</span>
           </h1>
+        </FadeIn>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="mt-4 text-lg text-muted-foreground md:text-xl"
-          >
+        <FadeIn delay={400}>
+          <p className="mt-4 text-lg text-muted-foreground md:text-xl">
             {PERSONAL_INFO.subtitle}
-          </motion.p>
+          </p>
+        </FadeIn>
 
+        <FadeIn delay={500} direction="none">
           <div className="mt-3 h-8">
             <span className="font-mono text-lg text-primary">
               {rotatingText}
               <span className="animate-pulse">|</span>
             </span>
           </div>
+        </FadeIn>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-            className="mx-auto mt-6 max-w-2xl text-muted-foreground"
-          >
+        <FadeIn delay={600}>
+          <p className="mx-auto mt-6 max-w-2xl text-muted-foreground">
             {PERSONAL_INFO.bio}
-          </motion.p>
+          </p>
+        </FadeIn>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-            className="mt-10 flex flex-wrap items-center justify-center gap-4"
-          >
+        <FadeIn delay={800}>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
               href="#projects"
-              className="rounded-xl bg-primary px-6 py-3 font-medium text-primary-foreground transition-all hover:glow-cyan hover:scale-105"
+              className="rounded-xl bg-primary px-6 py-3 font-medium text-primary-foreground transition-all hover:scale-105 hover:shadow-[0_0_20px_oklch(0.82_0.15_195/30%)]"
             >
               View My Work
             </a>
@@ -112,18 +96,15 @@ export function Hero() {
             </a>
             <a
               href="#contact"
-              className="rounded-xl border border-secondary px-6 py-3 font-medium text-secondary-foreground transition-all hover:glow-purple hover:bg-secondary/10"
+              className="rounded-xl border border-secondary px-6 py-3 font-medium text-secondary-foreground transition-all hover:bg-secondary/10 hover:shadow-[0_0_20px_oklch(0.55_0.2_290/30%)]"
             >
               Let&apos;s Connect
             </a>
-          </motion.div>
+          </div>
+        </FadeIn>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.1 }}
-            className="mt-10 flex items-center justify-center gap-5"
-          >
+        <FadeIn delay={1000}>
+          <div className="mt-10 flex items-center justify-center gap-5">
             {[
               { href: PERSONAL_INFO.social.github, icon: GitBranch, label: "GitHub" },
               { href: PERSONAL_INFO.social.linkedin, icon: ExternalLink, label: "LinkedIn" },
@@ -140,17 +121,17 @@ export function Hero() {
                 <Icon className="h-5 w-5" />
               </a>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </FadeIn>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.4 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        <div
+          className={`absolute bottom-10 left-1/2 -translate-x-1/2 transition-opacity duration-700 ${
+            show ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ transitionDelay: "1400ms" }}
         >
           <ChevronDown className="h-6 w-6 animate-bounce text-muted-foreground" />
-        </motion.div>
+        </div>
       </div>
     </section>
   );
