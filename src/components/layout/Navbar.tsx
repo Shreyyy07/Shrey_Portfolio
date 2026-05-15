@@ -9,6 +9,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const show = useMountAnimation(100);
+  const { togglePalette } = useCockpit();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -46,14 +47,25 @@ export function Navbar() {
           ))}
         </div>
 
-        <a
-          href={PERSONAL_INFO.resume}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden border border-foreground/20 px-6 py-2 text-[11px] font-medium uppercase tracking-[0.2em] text-foreground transition-all duration-300 hover:bg-foreground hover:text-background md:inline-block"
-        >
-          Resume
-        </a>
+        <div className="hidden items-center gap-3 md:flex">
+          <button
+            onClick={togglePalette}
+            className="inline-flex items-center gap-2 border border-foreground/15 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-foreground/55 transition-all hover:border-foreground/40 hover:text-foreground"
+          >
+            <Command className="h-3 w-3" />
+            <span>Search</span>
+            <kbd className="border border-foreground/15 px-1 font-mono text-[9px] tracking-widest">⌘K</kbd>
+          </button>
+          <RecruiterToggle />
+          <a
+            href={PERSONAL_INFO.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block border border-foreground/20 px-5 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-foreground transition-all duration-300 hover:bg-foreground hover:text-background"
+          >
+            Resume
+          </a>
+        </div>
 
         <button
           className="text-foreground md:hidden"
