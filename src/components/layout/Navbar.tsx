@@ -27,33 +27,32 @@ export function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-6">
+      <div className="mx-auto flex max-w-7xl items-center gap-6 px-6 py-5">
         <a
           href="#home"
-          className="text-xl font-bold tracking-tighter text-foreground"
+          className="shrink-0 text-xl font-bold tracking-tighter text-foreground"
         >
           SJ
         </a>
 
-        <div className="hidden items-center gap-10 text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/50 md:flex">
+        <div className="hidden flex-1 items-center justify-center gap-6 text-[10px] font-medium uppercase tracking-[0.2em] text-foreground/50 lg:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="transition-colors hover:text-foreground"
+              className="whitespace-nowrap transition-colors hover:text-foreground"
             >
               {link.label}
             </a>
           ))}
         </div>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="ml-auto hidden shrink-0 items-center gap-2 md:flex">
           <button
             onClick={togglePalette}
-            className="inline-flex items-center gap-2 border border-foreground/15 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-foreground/55 transition-all hover:border-foreground/40 hover:text-foreground"
+            className="inline-flex items-center gap-2 whitespace-nowrap border border-foreground/15 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-foreground/55 transition-all hover:border-foreground/40 hover:text-foreground"
           >
             <Command className="h-3 w-3" />
-            <span>Search</span>
             <kbd className="border border-foreground/15 px-1 font-mono text-[9px] tracking-widest">⌘K</kbd>
           </button>
           <RecruiterToggle />
@@ -61,7 +60,7 @@ export function Navbar() {
             href={PERSONAL_INFO.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block border border-foreground/20 px-5 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-foreground transition-all duration-300 hover:bg-foreground hover:text-background"
+            className="whitespace-nowrap border border-foreground/20 px-4 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-foreground transition-all duration-300 hover:bg-foreground hover:text-background"
           >
             Resume
           </a>

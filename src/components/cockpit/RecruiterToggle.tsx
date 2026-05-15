@@ -6,7 +6,7 @@ export function RecruiterToggle() {
   return (
     <button
       onClick={() => setRecruiterMode(!recruiterMode)}
-      className="group inline-flex items-center gap-2 border border-foreground/15 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.25em] text-foreground/60 transition-all hover:border-foreground/40 hover:text-foreground"
+      className="group inline-flex items-center gap-2 whitespace-nowrap border border-foreground/15 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground/60 transition-all hover:border-foreground/40 hover:text-foreground"
       title="Toggle Recruiter Mode"
     >
       {recruiterMode ? <Sparkles className="h-3 w-3" /> : <Briefcase className="h-3 w-3" />}
