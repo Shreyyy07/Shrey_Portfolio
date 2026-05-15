@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Command, Menu, X } from "lucide-react";
 import { NAV_LINKS, PERSONAL_INFO } from "@/lib/constants";
 import { useMountAnimation } from "@/hooks/use-animations";
+import { useCockpit } from "@/contexts/CockpitContext";
+import { RecruiterToggle } from "@/components/cockpit/RecruiterToggle";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
