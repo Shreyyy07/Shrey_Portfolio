@@ -8,6 +8,10 @@ import { Experience } from "@/components/sections/Experience";
 import { Projects } from "@/components/sections/Projects";
 import { Achievements } from "@/components/sections/Achievements";
 import { Contact } from "@/components/sections/Contact";
+import { CockpitProvider } from "@/contexts/CockpitContext";
+import { CursorSpotlight } from "@/components/cockpit/CursorSpotlight";
+import { CommandPalette } from "@/components/cockpit/CommandPalette";
+import { BootSequence } from "@/components/cockpit/BootSequence";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,18 +29,23 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="relative min-h-screen bg-background text-foreground">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Achievements />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <CockpitProvider>
+      <div className="relative min-h-screen bg-background text-foreground">
+        <BootSequence />
+        <CursorSpotlight />
+        <CommandPalette />
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Achievements />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </CockpitProvider>
   );
 }
