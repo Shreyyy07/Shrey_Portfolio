@@ -13,6 +13,7 @@ import { CursorSpotlight } from "@/components/cockpit/CursorSpotlight";
 import { CommandPalette } from "@/components/cockpit/CommandPalette";
 import { BootSequence } from "@/components/cockpit/BootSequence";
 import { ThreeBackground } from "@/components/cockpit/ThreeBackground";
+import { ClickBurst } from "@/components/cockpit/ClickBurst";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,6 +37,7 @@ function Index() {
         <ThreeBackground />
         <CursorSpotlight />
         <CommandPalette />
+        <ClickBurst />
         <Navbar />
         <main className="relative z-10">
           <Hero />

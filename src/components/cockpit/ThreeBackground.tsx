@@ -76,11 +76,7 @@ export function ThreeBackground() {
     };
     window.addEventListener("mousemove", onMouse);
 
-    let scrollY = 0;
-    const onScroll = () => {
-      scrollY = window.scrollY;
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
+    // Scroll-driven movement disabled per user request — keeps background stable.
 
     const onResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -101,8 +97,6 @@ export function ThreeBackground() {
       innerWire.rotation.x = -t * 0.2;
       innerWire.rotation.y = -t * 0.15;
 
-      group.position.y = -scrollY * 0.0015;
-
       points.rotation.y = t * 0.02;
       points.rotation.x = mouse.y * 0.1;
 
@@ -114,7 +108,6 @@ export function ThreeBackground() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("mousemove", onMouse);
-      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
       renderer.dispose();
       geo.dispose();
