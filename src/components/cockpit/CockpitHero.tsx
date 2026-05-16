@@ -268,7 +268,7 @@ export function CockpitHero() {
           <div className="md:col-span-2">
             <FocusCard />
           </div>
-          <div className="md:col-span-1">
+          <div className="md:col-span-1 md:col-start-6">
             <CTACard />
           </div>
         </div>
