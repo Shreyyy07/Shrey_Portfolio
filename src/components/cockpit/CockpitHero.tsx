@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  ArrowRight, Circle, Cloud, Command, FolderGit2, MapPin, Sparkles, Terminal, Zap,
+  ArrowRight, Circle, Cloud, Command, MapPin, Sparkles, Terminal, Zap,
 } from "lucide-react";
 import { CODING_STATS, PERSONAL_INFO, PROJECTS, SKILLS, STATS } from "@/lib/constants";
 import { useCockpit } from "@/contexts/CockpitContext";
 import { LiveClock } from "./LiveClock";
+import { GithubHeatmap } from "./GithubHeatmap";
+import { LiveFeed } from "./LiveFeed";
+import { LanguageRadar } from "./LanguageRadar";
 
 const ALL_SKILLS = Object.values(SKILLS).flat();
 
