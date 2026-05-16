@@ -12,6 +12,7 @@ import { CockpitProvider } from "@/contexts/CockpitContext";
 import { CursorSpotlight } from "@/components/cockpit/CursorSpotlight";
 import { CommandPalette } from "@/components/cockpit/CommandPalette";
 import { BootSequence } from "@/components/cockpit/BootSequence";
+import { ThreeBackground } from "@/components/cockpit/ThreeBackground";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,10 +33,11 @@ function Index() {
     <CockpitProvider>
       <div className="relative min-h-screen bg-background text-foreground">
         <BootSequence />
+        <ThreeBackground />
         <CursorSpotlight />
         <CommandPalette />
         <Navbar />
-        <main>
+        <main className="relative z-10">
           <Hero />
           <About />
           <Skills />
