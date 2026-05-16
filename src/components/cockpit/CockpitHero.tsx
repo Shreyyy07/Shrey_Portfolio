@@ -181,44 +181,7 @@ function CTACard() {
   );
 }
 
-function HeatmapCard() {
-  // Pseudo-random but deterministic heatmap (16 weeks × 7 days)
-  const cells = useMemo(() => {
-    const out: number[] = [];
-    let seed = 7;
-    for (let i = 0; i < 16 * 7; i++) {
-      seed = (seed * 9301 + 49297) % 233280;
-      out.push(seed / 233280);
-    }
-    return out;
-  }, []);
-  const level = (n: number) =>
-    n < 0.35 ? "bg-foreground/5" :
-    n < 0.6  ? "bg-foreground/15" :
-    n < 0.82 ? "bg-foreground/35" :
-               "bg-foreground/70";
-  return (
-    <div className="border border-foreground/10 bg-foreground/[0.02] p-5">
-      <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.3em] text-foreground/40">
-        <span className="flex items-center gap-2"><FolderGit2 className="h-3 w-3" /> contributions · 16w</span>
-        <span>{CODING_STATS[1].value}</span>
-      </div>
-      <div className="mt-4 grid grid-cols-16 gap-1" style={{ gridTemplateColumns: "repeat(16, minmax(0, 1fr))" }}>
-        {cells.map((n, i) => (
-          <span key={i} className={`aspect-square w-full ${level(n)}`} />
-        ))}
-      </div>
-      <div className="mt-3 flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-foreground/40">
-        <span>less</span>
-        <span className="h-2 w-2 bg-foreground/5" />
-        <span className="h-2 w-2 bg-foreground/15" />
-        <span className="h-2 w-2 bg-foreground/35" />
-        <span className="h-2 w-2 bg-foreground/70" />
-        <span>more</span>
-      </div>
-    </div>
-  );
-}
+// HeatmapCard removed — replaced by <GithubHeatmap /> with real contribution data.
 
 function FocusCard() {
   return (
@@ -265,7 +228,7 @@ export function CockpitHero() {
         </div>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-6 md:grid-rows-[auto_auto_auto]">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-6 md:auto-rows-min">
           {/* Identity — large */}
           <div className="md:col-span-4 md:row-span-2">
             <IdentityCard />
@@ -276,15 +239,40 @@ export function CockpitHero() {
             <MetricsCard />
           </div>
 
-          {/* Activity — middle right */}
+          {/* Activity */}
           <div className="md:col-span-2">
             <ActivityCard />
+          </div>
+
+          {/* Live feed — real-time event ticker */}
+          <div className="md:col-span-4">
+            <LiveFeed />
           </div>
 
           {/* Stack ticker — full width */}
           <div className="md:col-span-6">
             <StackTicker />
           </div>
+
+          {/* Language radar — large */}
+          <div className="md:col-span-3 md:row-span-2">
+            <LanguageRadar />
+          </div>
+
+          {/* GitHub heatmap */}
+          <div className="md:col-span-3">
+            <GithubHeatmap weeks={26} />
+          </div>
+
+          {/* Focus + CTA share the row */}
+          <div className="md:col-span-2">
+            <FocusCard />
+          </div>
+          <div className="md:col-span-1">
+            <CTACard />
+          </div>
+        </div>
+
 
           {/* Focus card */}
           <div className="md:col-span-2">
