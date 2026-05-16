@@ -274,22 +274,6 @@ export function CockpitHero() {
         </div>
 
 
-          {/* Focus card */}
-          <div className="md:col-span-2">
-            <FocusCard />
-          </div>
-
-          {/* Heatmap */}
-          <div className="md:col-span-2">
-            <HeatmapCard />
-          </div>
-
-          {/* CTA */}
-          <div className="md:col-span-2">
-            <CTACard />
-          </div>
-        </div>
-
         {/* footer hint */}
         <div className="mt-6 flex items-center justify-between text-[10px] uppercase tracking-[0.3em] text-foreground/35">
           <span>↓ scroll for the long form</span>
