@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import {
   ArrowRight, Circle, Cloud, Command, MapPin, Sparkles, Terminal, Zap,
 } from "lucide-react";
