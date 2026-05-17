@@ -8,6 +8,7 @@ import { LiveClock } from "./LiveClock";
 import { GithubHeatmap } from "./GithubHeatmap";
 import { LiveFeed } from "./LiveFeed";
 import { LanguageRadar } from "./LanguageRadar";
+import portrait from "@/assets/shrey-portrait.png";
 
 const ALL_SKILLS = Object.values(SKILLS).flat();
 
@@ -62,24 +63,45 @@ function StatusBar() {
 function IdentityCard() {
   const role = useRotator(PERSONAL_INFO.rotatingKeywords, 2200);
   return (
-    <div className="relative flex flex-col justify-between overflow-hidden border border-foreground/10 bg-foreground/[0.02] p-7 lg:p-9">
-      <div>
-        <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-foreground/40">
-          Identity · 01
-        </span>
-        <h1 className="font-serif-display mt-4 text-5xl leading-[0.95] tracking-tight md:text-6xl lg:text-7xl">
-          Shrey
-          <br />
-          <span className="font-light italic text-foreground/90">Joshi</span>
-          <span className="ml-2 inline-block h-2 w-2 translate-y-[-12px] rounded-full bg-foreground/90" />
-        </h1>
-      </div>
-      <div className="mt-8">
-        <div className="text-[10px] uppercase tracking-[0.3em] text-foreground/35">Currently</div>
-        <div key={role} className="mt-1 font-mono text-sm text-foreground/80 animate-in fade-in slide-in-from-bottom-1 duration-300">
-          {role}
+    <div className="relative grid grid-cols-1 gap-6 overflow-hidden border border-foreground/10 bg-foreground/[0.02] p-7 md:grid-cols-[1.2fr_1fr] lg:p-9">
+      <div className="relative z-10 flex flex-col justify-between">
+        <div>
+          <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-foreground/40">
+            Identity · 01
+          </span>
+          <h1 className="font-serif-display mt-4 text-5xl leading-[0.95] tracking-tight md:text-6xl lg:text-7xl">
+            Shrey
+            <br />
+            <span className="font-light italic text-foreground/90">Joshi</span>
+            <span className="ml-2 inline-block h-2 w-2 translate-y-[-12px] rounded-full bg-foreground/90" />
+          </h1>
+        </div>
+        <div className="mt-8">
+          <div className="text-[10px] uppercase tracking-[0.3em] text-foreground/35">Currently</div>
+          <div key={role} className="mt-1 font-mono text-sm text-foreground/80 animate-in fade-in slide-in-from-bottom-1 duration-300">
+            {role}
+          </div>
         </div>
       </div>
+
+      {/* Portrait */}
+      <div className="relative">
+        <div className="relative aspect-[4/5] w-full overflow-hidden border border-foreground/10 bg-foreground/[0.04]">
+          <img
+            src={portrait}
+            alt="Shrey Joshi portrait"
+            className="h-full w-full object-cover grayscale contrast-[1.05]"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+          <div className="absolute left-2 top-2 flex items-center gap-1.5 border border-foreground/20 bg-background/60 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/70 backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> live
+          </div>
+          <div className="absolute bottom-2 right-2 font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/60">
+            sj · 2026
+          </div>
+        </div>
+      </div>
+
       <div className="font-serif-display pointer-events-none absolute -bottom-12 -right-6 select-none text-[18rem] italic leading-none text-foreground/[0.025]">
         S
       </div>
