@@ -157,11 +157,13 @@ export const CODING_STATS = [
 ];
 
 export const NAV_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Achievements", href: "#achievements" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Skills", to: "/skills" },
+  { label: "Experience", to: "/experience" },
+  { label: "Projects", to: "/projects" },
+  { label: "Achievements", to: "/achievements" },
+  { label: "Brand", to: "/brand" },
+  { label: "Blog", to: "/blog" },
+  { label: "Contact", to: "/contact" },
 ];

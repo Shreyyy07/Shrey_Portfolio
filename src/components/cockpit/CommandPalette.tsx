@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { useCockpit } from "@/contexts/CockpitContext";
 import { NAV_LINKS, PERSONAL_INFO } from "@/lib/constants";
 import {
-  ArrowRight, Briefcase, Code2, Copy, Download, FolderGit2, Home,
-  Mail, Search, Sparkles, ToggleRight, User2,
+  ArrowRight, BookOpen, Briefcase, Code2, Copy, Download, FolderGit2, Home,
+  Mail, Search, Sparkles, Star, ToggleRight, User2,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -17,17 +18,20 @@ type Action = {
 };
 
 const SECTION_ICONS: Record<string, LucideIcon> = {
-  "#home": Home,
-  "#about": User2,
-  "#skills": Code2,
-  "#experience": Briefcase,
-  "#projects": FolderGit2,
-  "#achievements": Sparkles,
-  "#contact": Mail,
+  "/": Home,
+  "/about": User2,
+  "/skills": Code2,
+  "/experience": Briefcase,
+  "/projects": FolderGit2,
+  "/achievements": Star,
+  "/brand": Sparkles,
+  "/blog": BookOpen,
+  "/contact": Mail,
 };
 
 export function CommandPalette() {
   const { paletteOpen, setPaletteOpen, recruiterMode, setRecruiterMode } = useCockpit();
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -41,21 +45,19 @@ export function CommandPalette() {
     }
   }, [paletteOpen]);
 
-  const goto = (href: string) => {
+  const goto = (to: string) => {
     setPaletteOpen(false);
-    if (typeof document === "undefined") return;
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
+    navigate({ to });
   };
 
   const actions: Action[] = useMemo(
     () => [
       ...NAV_LINKS.map((l) => ({
-        id: `nav:${l.href}`,
+        id: `nav:${l.to}`,
         label: `Go to ${l.label}`,
         group: "Navigate" as const,
-        icon: SECTION_ICONS[l.href] ?? ArrowRight,
-        run: () => goto(l.href),
+        icon: SECTION_ICONS[l.to] ?? ArrowRight,
+        run: () => goto(l.to),
       })),
       {
         id: "act:resume",

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "@tanstack/react-router";
 import { Command, Menu, X } from "lucide-react";
 import { NAV_LINKS, PERSONAL_INFO } from "@/lib/constants";
 import { useMountAnimation } from "@/hooks/use-animations";
@@ -28,22 +29,24 @@ export function Navbar() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center gap-6 px-6 py-5">
-        <a
-          href="#home"
+        <Link
+          to="/"
           className="shrink-0 text-xl font-bold tracking-tighter text-foreground"
         >
           SJ
-        </a>
+        </Link>
 
         <div className="hidden flex-1 items-center justify-center gap-6 text-[10px] font-medium uppercase tracking-[0.2em] text-foreground/50 lg:flex">
           {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
+            <Link
+              key={link.to}
+              to={link.to}
+              activeOptions={{ exact: true }}
+              activeProps={{ className: "text-foreground" }}
               className="whitespace-nowrap transition-colors hover:text-foreground"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -79,14 +82,14 @@ export function Navbar() {
         <div className="border-t border-foreground/10 bg-background/95 backdrop-blur-md md:hidden">
           <div className="flex flex-col gap-5 px-8 py-6 text-[11px] font-medium uppercase tracking-[0.2em]">
             {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
+              <Link
+                key={link.to}
+                to={link.to}
                 onClick={() => setMobileOpen(false)}
                 className="text-foreground/60 transition-colors hover:text-foreground"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <a
               href={PERSONAL_INFO.resume}

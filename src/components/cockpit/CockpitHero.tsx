@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import {
   ArrowRight, Circle, Cloud, Command, MapPin, Sparkles, Terminal, Zap,
 } from "lucide-react";
@@ -187,10 +188,10 @@ function CTACard() {
     <div className="flex flex-col justify-between gap-4 border border-foreground/10 bg-foreground/[0.02] p-6">
       <div className="text-[10px] uppercase tracking-[0.3em] text-foreground/40">Make a move</div>
       <div className="flex flex-col gap-2">
-        <a href="#projects" className="group flex items-center justify-between bg-foreground px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] text-background transition-all hover:gap-1">
+        <Link to="/projects" className="group flex items-center justify-between bg-foreground px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] text-background transition-all hover:gap-1">
           View Work
           <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-        </a>
+        </Link>
         <a href={PERSONAL_INFO.resume} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between border border-foreground/15 px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] text-foreground transition-all hover:border-foreground/40">
           Download CV <ArrowRight className="h-3.5 w-3.5 -rotate-45" />
         </a>
