@@ -91,7 +91,7 @@ export function PersonalBrand() {
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-foreground/40">
-                  <Instagram className="h-3 w-3" /> the reels
+                  <Camera className="h-3 w-3" /> the reels
                 </div>
                 <ArrowUpRight className="h-4 w-4 text-foreground/40 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
               </div>
