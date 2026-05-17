@@ -1,6 +1,14 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { CockpitProvider } from "@/contexts/CockpitContext";
+import { CursorSpotlight } from "@/components/cockpit/CursorSpotlight";
+import { CommandPalette } from "@/components/cockpit/CommandPalette";
+import { BootSequence } from "@/components/cockpit/BootSequence";
+import { ThreeBackground } from "@/components/cockpit/ThreeBackground";
+import { ClickBurst } from "@/components/cockpit/ClickBurst";
 
 function NotFoundComponent() {
   return (
@@ -38,23 +46,13 @@ export const Route = createRootRoute({
       { name: "twitter:card", content: "summary" },
     ],
     links: [
-      {
-        rel: "preconnect",
-        href: "https://fonts.googleapis.com",
-      },
-      {
-        rel: "preconnect",
-        href: "https://fonts.gstatic.com",
-        crossOrigin: "anonymous",
-      },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
       },
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "stylesheet", href: appCss },
     ],
   }),
   shellComponent: RootShell,
@@ -77,5 +75,20 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <CockpitProvider>
+      <div className="relative min-h-screen bg-background text-foreground">
+        <BootSequence />
+        <ThreeBackground />
+        <CursorSpotlight />
+        <CommandPalette />
+        <ClickBurst />
+        <Navbar />
+        <main className="relative z-10">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+    </CockpitProvider>
+  );
 }
