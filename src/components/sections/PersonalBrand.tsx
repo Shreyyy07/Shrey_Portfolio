@@ -1,4 +1,4 @@
-import { ArrowUpRight, BookOpen, Instagram, Sparkles } from "lucide-react";
+import { ArrowUpRight, BookOpen, Camera, Sparkles } from "lucide-react";
 
 const BRAND = {
   handle: "learn.with.Shrey",
