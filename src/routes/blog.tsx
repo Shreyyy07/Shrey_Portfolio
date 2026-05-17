@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
-import { useServerFn } from "@tanstack/react-start";
+import { useEffect, useState, useCallback } from "react";
 import { ArrowUpRight, BookOpen, Clock, RefreshCw } from "lucide-react";
 import { fetchMediumPosts, type MediumPost } from "@/lib/medium.functions";
 
@@ -29,14 +28,31 @@ function formatDate(d: string) {
 }
 
 function BlogPage() {
-  const fn = useServerFn(fetchMediumPosts);
-  const { data, isLoading, isError, refetch, isFetching } = useQuery({
-    queryKey: ["medium-posts"],
-    queryFn: () => fn(),
-    staleTime: 1000 * 60 * 10,
-  });
+  const [posts, setPosts] = useState<MediumPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isFetching, setIsFetching] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-  const posts: MediumPost[] = data ?? [];
+  const load = useCallback(async (initial = false) => {
+    if (initial) setIsLoading(true);
+    setIsFetching(true);
+    setIsError(false);
+    try {
+      const data = await fetchMediumPosts();
+      setPosts(data);
+    } catch {
+      setIsError(true);
+    } finally {
+      setIsFetching(false);
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    load(true);
+  }, [load]);
+
+  const refetch = () => load(false);
   const [featured, ...rest] = posts;
 
   return (
