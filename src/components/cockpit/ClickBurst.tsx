@@ -34,11 +34,11 @@ export function ClickBurst() {
     window.addEventListener("resize", resize);
 
     const onClick = (e: MouseEvent) => {
-      // Skip clicks on interactive elements that need their own feedback (still allow burst).
-      const rays = Array.from({ length: 7 + Math.floor(Math.random() * 4) }).map(() => ({
-        angle: Math.random() * Math.PI * 2,
-        length: 120 + Math.random() * 180,
-        speed: 0.9 + Math.random() * 0.6,
+      const count = 4;
+      const rays = Array.from({ length: count }).map((_, i) => ({
+        angle: (i / count) * Math.PI * 2 + Math.random() * 0.3,
+        length: 28 + Math.random() * 18,
+        speed: 0.9 + Math.random() * 0.2,
       }));
       burstsRef.current.push({ x: e.clientX, y: e.clientY, t0: performance.now(), rays });
     };
@@ -47,54 +47,36 @@ export function ClickBurst() {
     let raf = 0;
     const tick = (now: number) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      burstsRef.current = burstsRef.current.filter((b) => now - b.t0 < 1400);
+      const LIFE = 600;
+      burstsRef.current = burstsRef.current.filter((b) => now - b.t0 < LIFE);
 
       for (const b of burstsRef.current) {
-        const age = (now - b.t0) / 1400; // 0 → 1
+        const age = (now - b.t0) / LIFE;
         const ease = 1 - Math.pow(1 - age, 3);
         const alpha = 1 - age;
 
-        // Core glow
-        const coreR = 4 + age * 22;
-        const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, coreR * 3);
-        grad.addColorStop(0, `rgba(255,255,255,${0.7 * alpha})`);
-        grad.addColorStop(1, "rgba(255,255,255,0)");
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(b.x, b.y, coreR * 3, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Rays + nodes
         ctx.lineWidth = 1;
         for (const r of b.rays) {
           const len = r.length * ease * r.speed;
           const ex = b.x + Math.cos(r.angle) * len;
           const ey = b.y + Math.sin(r.angle) * len;
 
-          ctx.strokeStyle = `rgba(255,255,255,${0.45 * alpha})`;
+          ctx.strokeStyle = `rgba(255,255,255,${0.35 * alpha})`;
           ctx.beginPath();
           ctx.moveTo(b.x, b.y);
           ctx.lineTo(ex, ey);
           ctx.stroke();
 
-          // Node at the tip
-          ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
+          ctx.fillStyle = `rgba(255,255,255,${0.7 * alpha})`;
           ctx.beginPath();
-          ctx.arc(ex, ey, 2.4, 0, Math.PI * 2);
+          ctx.arc(ex, ey, 1.6, 0, Math.PI * 2);
           ctx.fill();
-
-          // Outer ring on node
-          ctx.strokeStyle = `rgba(255,255,255,${0.3 * alpha})`;
-          ctx.beginPath();
-          ctx.arc(ex, ey, 5 + age * 4, 0, Math.PI * 2);
-          ctx.stroke();
         }
 
-        // Expanding ring
-        ctx.strokeStyle = `rgba(255,255,255,${0.25 * alpha})`;
+        ctx.fillStyle = `rgba(255,255,255,${0.8 * alpha})`;
         ctx.beginPath();
-        ctx.arc(b.x, b.y, 20 + ease * 90, 0, Math.PI * 2);
-        ctx.stroke();
+        ctx.arc(b.x, b.y, 2, 0, Math.PI * 2);
+        ctx.fill();
       }
 
       raf = requestAnimationFrame(tick);
