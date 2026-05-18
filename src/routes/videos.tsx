@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { ArrowUpRight, Play, RefreshCw, Youtube, Eye } from "lucide-react";
+import { ArrowUpRight, Play, RefreshCw, Film, Eye } from "lucide-react";
 import { fetchYouTubeVideos, type YouTubeVideo } from "@/lib/youtube.functions";
 
 export const Route = createFileRoute("/videos")({
