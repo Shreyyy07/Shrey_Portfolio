@@ -165,5 +165,6 @@ export const NAV_LINKS = [
   { label: "Achievements", to: "/achievements" },
   { label: "Brand", to: "/brand" },
   { label: "Blog", to: "/blog" },
+  { label: "Videos", to: "/videos" },
   { label: "Contact", to: "/contact" },
 ];
