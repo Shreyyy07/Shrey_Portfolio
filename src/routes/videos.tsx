@@ -80,7 +80,7 @@ function VideosPage() {
           <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b border-foreground/10 pb-6">
             <div>
               <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.4em] text-foreground/40">
-                <Youtube className="h-3 w-3" /> The Channel · live from YouTube
+                <Film className="h-3 w-3" /> The Channel · live from YouTube
               </div>
               <h1 className="font-serif-display mt-3 text-4xl md:text-5xl">
                 learn<span className="text-foreground/40">.</span>with
