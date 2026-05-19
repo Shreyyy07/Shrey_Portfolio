@@ -10,6 +10,7 @@ import { BootSequence } from "@/components/cockpit/BootSequence";
 import { ThreeBackground } from "@/components/cockpit/ThreeBackground";
 import { ClickBurst } from "@/components/cockpit/ClickBurst";
 import { VoiceAssistant } from "@/components/cockpit/VoiceAssistant";
+import { PageTransition } from "@/components/cockpit/PageTransition";
 
 function NotFoundComponent() {
   return (
@@ -87,7 +88,9 @@ function RootComponent() {
         <VoiceAssistant />
         <Navbar />
         <main className="relative z-10">
-          <Outlet />
+          <PageTransition>
+            <Outlet />
+          </PageTransition>
         </main>
         <Footer />
       </div>
