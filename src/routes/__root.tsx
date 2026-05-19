@@ -9,6 +9,7 @@ import { CommandPalette } from "@/components/cockpit/CommandPalette";
 import { BootSequence } from "@/components/cockpit/BootSequence";
 import { ThreeBackground } from "@/components/cockpit/ThreeBackground";
 import { ClickBurst } from "@/components/cockpit/ClickBurst";
+import { VoiceAssistant } from "@/components/cockpit/VoiceAssistant";
 
 function NotFoundComponent() {
   return (
@@ -83,6 +84,7 @@ function RootComponent() {
         <CursorSpotlight />
         <CommandPalette />
         <ClickBurst />
+        <VoiceAssistant />
         <Navbar />
         <main className="relative z-10">
           <Outlet />
