@@ -1,5 +1,5 @@
 import { Download, Mail, MapPin, Phone } from "lucide-react";
-import { CERTIFICATIONS, EXPERIENCE, PERSONAL_INFO, SKILLS, STATS } from "@/lib/constants";
+import { ALL_CERTIFICATES, EXPERIENCE, PERSONAL_INFO, SKILLS, STATS } from "@/lib/constants";
 
 /**
  * "Recruiter Mode" — a clean, scannable, classic résumé hero.
@@ -68,7 +68,7 @@ export function RecruiterHero() {
 
             <h2 className="mt-6 text-[11px] font-semibold uppercase tracking-[0.3em] text-foreground/45">Certifications</h2>
             <ul className="mt-2 space-y-1 text-sm text-foreground/75">
-              {CERTIFICATIONS.map((c) => (
+              {ALL_CERTIFICATES.map((c) => (
                 <li key={c.title}><span className="text-foreground">{c.title}</span> — {c.issuer}</li>
               ))}
             </ul>

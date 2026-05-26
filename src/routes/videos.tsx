@@ -44,7 +44,18 @@ function VideosPage() {
     setIsError(false);
     try {
       const data = await fetchYouTubeVideos();
-      setVideos(data);
+      
+      // Override default YouTube thumbnails with the provided custom high-quality images
+      // User provided a1.png (oldest) to a12.png (newest). Assuming RSS feed is newest-first.
+      const mappedData = data.map((v, i) => {
+        const customNumber = 12 - i;
+        if (customNumber >= 1 && customNumber <= 12) {
+          return { ...v, thumbnail: `/videos/a${customNumber}.png` };
+        }
+        return v;
+      });
+      
+      setVideos(mappedData);
     } catch {
       setIsError(true);
     } finally {
