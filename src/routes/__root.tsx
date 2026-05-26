@@ -11,6 +11,7 @@ import { ThreeBackground } from "@/components/cockpit/ThreeBackground";
 import { ClickBurst } from "@/components/cockpit/ClickBurst";
 import { VoiceAssistant } from "@/components/cockpit/VoiceAssistant";
 import { PageTransition } from "@/components/cockpit/PageTransition";
+import { ScrollNavigator } from "@/components/layout/ScrollNavigator";
 
 function NotFoundComponent() {
   return (
@@ -86,6 +87,7 @@ function RootComponent() {
         <CommandPalette />
         <ClickBurst />
         <VoiceAssistant />
+        <ScrollNavigator />
         <Navbar />
         <main className="relative z-10">
           <PageTransition>

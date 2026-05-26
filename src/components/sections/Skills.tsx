@@ -1,64 +1,61 @@
-import { useState } from "react";
 import { SKILLS } from "@/lib/constants";
 import { FadeIn, useAnimateOnView } from "@/hooks/use-animations";
+import { Code2, Database, Layout, Server, Wrench, Cloud } from "lucide-react";
 
-const categories = ["All", ...Object.keys(SKILLS)];
+const categoryIcons: Record<string, React.ReactNode> = {
+  "Programming Languages": <Code2 className="h-6 w-6" />,
+  "Frontend": <Layout className="h-6 w-6" />,
+  "Backend": <Server className="h-6 w-6" />,
+  "Databases": <Database className="h-6 w-6" />,
+  "DevOps & Cloud": <Cloud className="h-6 w-6" />,
+  "Tools & Platforms": <Wrench className="h-6 w-6" />,
+};
 
 export function Skills() {
-  const [active, setActive] = useState("All");
   const { ref, visible } = useAnimateOnView();
-
-  const filtered =
-    active === "All"
-      ? Object.entries(SKILLS).flatMap(([cat, items]) =>
-          items.map((item) => ({ item, category: cat }))
-        )
-      : (SKILLS[active as keyof typeof SKILLS] || []).map((item) => ({
-          item,
-          category: active,
-        }));
 
   return (
     <section id="skills" className="relative py-24">
-      <div className="pointer-events-none absolute -right-60 top-0 h-80 w-80 rounded-full bg-secondary/10 blur-[120px]" />
+      <div className="pointer-events-none absolute -left-40 top-40 h-96 w-96 rounded-full bg-primary/10 blur-[120px]" />
       <div className="mx-auto max-w-7xl px-6">
         <FadeIn onView>
-          <div className="mb-12 text-center">
-            <h2 className="font-heading text-4xl font-bold">
-              Skills & <span className="text-gradient">Technologies</span>
+          <div className="mb-16 text-center">
+            <h2 className="font-heading text-4xl font-bold md:text-5xl">
+              Technical <span className="text-gradient">Arsenal</span>
             </h2>
-            <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-primary" />
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+              A comprehensive overview of the technologies, frameworks, and tools I use to build robust, scalable, and high-performance applications.
+            </p>
+            <div className="mx-auto mt-6 h-1 w-20 rounded-full bg-primary" />
           </div>
         </FadeIn>
 
-        <div className="mb-10 flex flex-wrap justify-center gap-2">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                active === cat
-                  ? "bg-primary text-primary-foreground shadow-[0_0_15px_oklch(0.82_0.15_195/25%)]"
-                  : "glass-card text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        <div ref={ref} className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {filtered.map(({ item }, i) => (
+        <div ref={ref} className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {Object.entries(SKILLS).map(([category, items], idx) => (
             <div
-              key={item}
-              className={`glass-card group flex items-center justify-center rounded-xl px-4 py-4 text-center transition-all duration-500 hover:scale-105 hover:shadow-[0_0_20px_oklch(0.82_0.15_195/20%)] ${
-                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              key={category}
+              className={`glass-card group relative overflow-hidden rounded-2xl border border-foreground/10 bg-foreground/[0.02] p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_oklch(0.82_0.15_195/15%)] ${
+                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
-              style={{ transitionDelay: visible ? `${i * 30}ms` : "0ms" }}
+              style={{ transitionDelay: visible ? `${idx * 100}ms` : "0ms" }}
             >
-              <span className="text-sm font-medium text-muted-foreground transition-colors group-hover:text-foreground">
-                {item}
-              </span>
+              <div className="mb-6 flex items-center gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-500 group-hover:scale-110 group-hover:bg-primary/20">
+                  {categoryIcons[category] || <Code2 className="h-6 w-6" />}
+                </div>
+                <h3 className="text-xl font-semibold tracking-tight text-foreground">{category}</h3>
+              </div>
+              
+              <div className="flex flex-wrap gap-2.5">
+                {items.map((item) => (
+                  <span
+                    key={item}
+                    className="inline-flex items-center rounded-md border border-foreground/10 bg-background/50 px-3 py-1.5 text-sm font-medium text-foreground/80 shadow-sm transition-all duration-300 hover:border-primary/50 hover:bg-primary/5 hover:text-foreground"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>

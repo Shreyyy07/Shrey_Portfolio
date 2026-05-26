@@ -47,6 +47,20 @@ export const SKILLS = {
 
 export const EXPERIENCE = [
   {
+    id: 4,
+    company: "Unmappr",
+    position: "Backend Developer",
+    type: "Part-time · Remote",
+    location: "Berlin, Germany",
+    duration: "Feb 2026 - May 2026",
+    responsibilities: [
+      "Built robust APIs and implemented secure authentication mechanisms",
+      "Handled core backend infrastructure from the ground up, focusing on API design, user authorization, and database optimization",
+      "Contributed to UI development to ensure smooth frontend-backend integration",
+    ],
+    tech: ["Backend", "API Design", "Authentication", "Database", "UI Integration"],
+  },
+  {
     id: 1,
     company: "Apollo Tyres Global R&D",
     position: "Automation Engineer",
@@ -58,6 +72,7 @@ export const EXPERIENCE = [
       "Conducted on-site implementation and training for seamless process integration",
     ],
     tech: ["Python", "Automation", "R&D"],
+    certificate: "/experience/srm_certificate.pdf",
   },
   {
     id: 2,
@@ -71,6 +86,7 @@ export const EXPERIENCE = [
       "Resulted in faster data extraction and fewer manual steps",
     ],
     tech: ["Python", "Data Analysis", "UX Research"],
+    certificate: "/experience/apollo_certificate.pdf",
   },
   {
     id: 3,
@@ -84,6 +100,7 @@ export const EXPERIENCE = [
       "Collaborated in agile development cycles",
     ],
     tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    certificate: "/experience/fozzil_certificate.pdf",
   },
 ];
 
@@ -134,11 +151,29 @@ export const PROJECTS = [
   },
 ];
 
-export const CERTIFICATIONS = [
-  { title: "Generative AI Certification", issuer: "Microsoft" },
-  { title: "NPTEL JAVA Certification", issuer: "NPTEL" },
-  { title: "AWS Academy Machine Learning Foundations", issuer: "AWS" },
-  { title: "Networking Certificate", issuer: "Cisco Networking Academy" },
+export const ALL_CERTIFICATES = [
+  { title: "Generative AI Certification", issuer: "Microsoft", file: null },
+  { title: "NPTEL JAVA Certification", issuer: "NPTEL", file: "NPTEL- Programming In Java.pdf" },
+  { title: "Machine Learning Foundations", issuer: "AWS Academy", file: "AWS.pdf" },
+  { title: "Networking Basics", issuer: "Cisco Networking Academy", file: "Networking_Basics_Certificate.pdf" },
+  { title: "Accenture Job Simulation", issuer: "Accenture", file: "Accenture_Certificate .pdf" },
+  { title: "AI & Big Data in IOT", issuer: "Certification", file: "AI & Big data in IOT.pdf" },
+  { title: "AI Fundamentals", issuer: "Certification", file: "AI_Fundamentals.pdf" },
+  { title: "Alteryx Machine Learning", issuer: "Alteryx", file: "Alterys_Machine_Learning_Fundamentals.pdf" },
+  { title: "Generative AI Productivity", issuer: "Microsoft & LinkedIn", file: "Build Your Generative AI Productivity Skills with Microsoft and LinkedIn.pdf" },
+  { title: "Model Context Protocol", issuer: "Anthropic Claude", file: "Claude _MCP_Certificate.pdf" },
+  { title: "Intro to Agent Skills", issuer: "Anthropic Claude", file: "Claude_Intro to agent skills.pdf" },
+  { title: "Internship Completion", issuer: "CodSoft", file: "CodSoft_Internship_Completion.pdf" },
+  { title: "DBMS Certification", issuer: "Scaler", file: "DBMS- scaler.pdf" },
+  { title: "Deloitte Job Simulation", issuer: "Deloitte", file: "Deloitte_Certificate.pdf" },
+  { title: "EA Software Engineering", issuer: "Electronic Arts", file: "EA_Certificate.pdf" },
+  { title: "Excel with Copilot", issuer: "Microsoft", file: "Excel with Copilot AIDriven Data Analysis_Certificate.pdf" },
+  { title: "Engineering Simulation", issuer: "Goldman Sachs", file: "Goldman Sachs_Certificate.pdf" },
+  { title: "ChatGPT Course", issuer: "Infosys", file: "Infosys- ChatGPT Course.pdf" },
+  { title: "IoT Certification", issuer: "Certification", file: "IOT Certificate.pdf" },
+  { title: "JavaScript Certification", issuer: "HackerRank", file: "JavaScript_ Certificate.pdf" },
+  { title: "Oracle Certification", issuer: "Oracle", file: "Oracle Certification.pdf" },
+  { title: "Software Engineering", issuer: "Wells Fargo", file: "Wells Fargo Certificate.pdf" }
 ];
 
 export const GITHUB_ACHIEVEMENTS = [
@@ -159,11 +194,9 @@ export const CODING_STATS = [
 export const NAV_LINKS = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
-  { label: "Skills", to: "/skills" },
   { label: "Experience", to: "/experience" },
   { label: "Projects", to: "/projects" },
   { label: "Achievements", to: "/achievements" },
-  { label: "Brand", to: "/brand" },
   { label: "Blog", to: "/blog" },
   { label: "Videos", to: "/videos" },
   { label: "Contact", to: "/contact" },

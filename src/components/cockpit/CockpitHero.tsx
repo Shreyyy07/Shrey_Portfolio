@@ -9,7 +9,7 @@ import { LiveClock } from "./LiveClock";
 import { GithubHeatmap } from "./GithubHeatmap";
 import { LiveFeed } from "./LiveFeed";
 import { LanguageRadar } from "./LanguageRadar";
-import portrait from "@/assets/shrey-portrait.png";
+import portrait from "@/assets/Profile_Picture.png";
 
 const ALL_SKILLS = Object.values(SKILLS).flat();
 
@@ -64,8 +64,8 @@ function StatusBar() {
 function IdentityCard() {
   const role = useRotator(PERSONAL_INFO.rotatingKeywords, 2200);
   return (
-    <div className="relative grid grid-cols-1 gap-6 overflow-hidden border border-foreground/10 bg-foreground/[0.02] p-7 md:grid-cols-[1.2fr_1fr] lg:p-9">
-      <div className="relative z-10 flex flex-col justify-between">
+    <div className="relative grid grid-cols-1 items-center gap-8 overflow-hidden border border-foreground/10 bg-foreground/[0.02] p-7 md:grid-cols-[1fr_0.75fr] lg:gap-16 lg:p-12">
+      <div className="relative z-10 flex h-full flex-col justify-between">
         <div>
           <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-foreground/40">
             Identity · 01

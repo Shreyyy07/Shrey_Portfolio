@@ -1,14 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { About } from "@/components/sections/About";
+import { Skills } from "@/components/sections/Skills";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About — Shrey Joshi" },
-      { name: "description", content: "About Shrey Joshi — background, bio, and current focus areas." },
+      { name: "description", content: "About Shrey Joshi — background, bio, skills, and current focus areas." },
       { property: "og:title", content: "About — Shrey Joshi" },
-      { property: "og:description", content: "Background, bio, and current focus." },
+      { property: "og:description", content: "Background, bio, skills, and current focus." },
     ],
   }),
-  component: () => <div className="pt-24"><About /></div>,
+  component: () => (
+    <div className="pt-24">
+      <About />
+      <Skills />
+    </div>
+  ),
 });
