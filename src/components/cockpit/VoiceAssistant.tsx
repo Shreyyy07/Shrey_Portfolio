@@ -13,7 +13,7 @@ const ROUTES: Array<{ keys: string[]; to: string; label: string }> = [
   { keys: ["skill", "tech stack", "technologies"], to: "/about", label: "Skills" },
   { keys: ["experience", "work", "job", "internship"], to: "/experience", label: "Experience" },
   { keys: ["project", "portfolio"], to: "/projects", label: "Projects" },
-  { keys: ["achievement", "award", "certificate"], to: "/achievements", label: "Achievements" },
+  { keys: ["certificate", "certification", "award"], to: "/about", label: "Certifications" },
   { keys: ["brand", "personal brand", "learn with shrey"], to: "/brand", label: "Brand" },
   { keys: ["video", "youtube", "reel", "short"], to: "/videos", label: "Videos" },
   { keys: ["contact", "hire", "reach", "connect"], to: "/contact", label: "Contact" },

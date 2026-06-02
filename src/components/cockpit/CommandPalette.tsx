@@ -23,7 +23,6 @@ const SECTION_ICONS: Record<string, LucideIcon> = {
   "/skills": Code2,
   "/experience": Briefcase,
   "/projects": FolderGit2,
-  "/achievements": Star,
   "/brand": Sparkles,
   "/blog": BookOpen,
   "/contact": Mail,

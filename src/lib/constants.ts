@@ -5,27 +5,32 @@ export const PERSONAL_INFO = {
   rotatingKeywords: ["Problem Solver", "Web Application Enthusiast", "AI Integrator", "DevOps Engineer"],
   location: "Chennai, Tamil Nadu, India",
   email: "shreyjoshi1394@gmail.com",
+  web3forms_access_key: "YOUR_ACCESS_KEY_HERE", // Get one for free at web3forms.com
   phone: "+91 9166791300",
   bio: "Passionate full-stack developer from Chennai with expertise in modern web technologies, AI integration, and DevOps. Building scalable applications and solving complex problems with 1.25M+ lines of code written.",
   aboutBio: [
-    "I'm a passionate full-stack developer currently pursuing Computer Science at SRM Institute of Science and Technology with a CGPA of 9.30. With a strong foundation in competitive programming and modern web development, I love building scalable applications that solve real-world problems.",
+    "I'm a passionate full-stack developer currently pursuing Computer Science at SRM Institute of Science and Technology with a CGPA of 9.38. With a strong foundation in competitive programming and modern web development, I love building scalable applications that solve real-world problems.",
     "Based in Chennai, Tamil Nadu, I've worked on diverse projects ranging from AI-powered communication platforms to automated DevOps pipelines. My experience spans full-stack development at FOZZIL and automation engineering at Apollo Tyres Global R&D, where I optimized workflows and enhanced tool performance.",
     "When I'm not coding, you'll find me contributing to open source, solving algorithmic challenges on LeetCode, or exploring the latest web technologies and AI trends."
   ],
-  resume: "https://drive.google.com/file/d/1U9g1xkkmHwT_GO8kaMrreOEcVLmRXdXD/view",
+  resume: "https://drive.google.com/file/d/1P30ftvhmBdX9Ik62fN3fpbKoXLJjYwow/view?usp=sharing",
   social: {
     github: "https://github.com/Shreyyy07",
     linkedin: "https://www.linkedin.com/in/shrey-joshi-1b038a249/",
     leetcode: "https://leetcode.com/u/shreyyy___07/",
     codolio: "https://codolio.com/profile/kbygUcjT",
+    medium: "https://medium.com/@learnwithshrey",
+    instagram: "https://www.instagram.com/learn.with.shrey/",
+    youtube: "https://www.youtube.com/@learn_with_shrey07",
+    facebook: "https://www.facebook.com/profile.php?id=61578116812108",
   },
 };
 
 export const STATS = [
-  { label: "CGPA", value: 9.3, suffix: "", decimals: 2 },
+  { label: "CGPA", value: 9.38, suffix: "", decimals: 2 },
   { label: "Lines of Code", value: 1.25, suffix: "M+", decimals: 2 },
   { label: "GitHub Repos", value: 53, suffix: "", decimals: 0 },
-  { label: "LeetCode Problems", value: 400, suffix: "+", decimals: 0 },
+  { label: "LeetCode Problems", value: 250, suffix: "+", decimals: 0 },
   { label: "Years Coding", value: 3, suffix: "+", decimals: 0 },
 ];
 
@@ -208,7 +213,6 @@ export const NAV_LINKS = [
   { label: "About", to: "/about" },
   { label: "Experience", to: "/experience" },
   { label: "Projects", to: "/projects" },
-  { label: "Achievements", to: "/achievements" },
   { label: "Blog", to: "/blog" },
   { label: "Videos", to: "/videos" },
   { label: "Contact", to: "/contact" },

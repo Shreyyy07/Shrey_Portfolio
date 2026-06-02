@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { About } from "@/components/sections/About";
 import { Skills } from "@/components/sections/Skills";
+import { Certifications } from "@/components/sections/Certifications";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -15,6 +16,7 @@ export const Route = createFileRoute("/about")({
     <div className="pt-24">
       <About />
       <Skills />
+      <Certifications />
     </div>
   ),
 });

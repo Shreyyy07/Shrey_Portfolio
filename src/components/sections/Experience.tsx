@@ -58,9 +58,14 @@ export function Experience() {
                     transition={{ duration: 0.5, type: "spring" }}
                     className="w-full md:w-1/2 pl-16 pr-0 md:px-10"
                   >
-                    <div className="group relative overflow-hidden rounded-2xl border border-foreground/10 bg-background/50 p-6 sm:p-8 backdrop-blur-xl transition-all hover:border-primary/30 hover:shadow-[0_0_30px_oklch(0.82_0.15_195/15%)] hover:-translate-y-1">
-                      {/* Hover Gradient Background */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <div 
+                      className="group relative overflow-hidden rounded-3xl border border-white/10 bg-background/40 backdrop-blur-xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1"
+                      style={{ boxShadow: "none" }}
+                      onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 0 60px rgba(255,255,255,0.08)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)" }}
+                      onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)" }}
+                    >
+                      {/* Gradient mesh like Projects */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/5 to-transparent opacity-60" />
                       
                       {/* ALWAYS LEFT ALIGNED CONTENT */}
                       <div className="relative z-10 flex flex-col items-start text-left">

@@ -8,10 +8,10 @@ type Project = typeof PROJECTS[0];
 
 // Unique gradient mesh per project id
 const PROJECT_STYLES: Record<number, { mesh: string; glow: string; accent: string; tag: string }> = {
-  1: { mesh: "from-violet-500/20 via-cyan-500/10 to-transparent",  glow: "rgba(139,92,246,0.3)",  accent: "#a78bfa", tag: "AI · Multimodal" },
-  2: { mesh: "from-rose-500/20 via-pink-500/10 to-transparent",     glow: "rgba(244,63,94,0.3)",   accent: "#fb7185", tag: "AI · Recruitment" },
-  3: { mesh: "from-emerald-500/20 via-teal-500/10 to-transparent",  glow: "rgba(52,211,153,0.3)",  accent: "#34d399", tag: "AI · EdTech" },
-  4: { mesh: "from-orange-500/20 via-amber-500/10 to-transparent",  glow: "rgba(249,115,22,0.3)",  accent: "#fb923c", tag: "DevOps · Cloud" },
+  1: { mesh: "from-primary/20 via-primary/5 to-transparent", glow: "rgba(255,255,255,0.1)", accent: "#ffffff", tag: "AI · Multimodal" },
+  2: { mesh: "from-primary/20 via-primary/5 to-transparent", glow: "rgba(255,255,255,0.1)", accent: "#ffffff", tag: "AI · Recruitment" },
+  3: { mesh: "from-primary/20 via-primary/5 to-transparent", glow: "rgba(255,255,255,0.1)", accent: "#ffffff", tag: "AI · EdTech" },
+  4: { mesh: "from-primary/20 via-primary/5 to-transparent", glow: "rgba(255,255,255,0.1)", accent: "#ffffff", tag: "DevOps · Cloud" },
 };
 
 // ─── Architecture Diagram Lightbox ─────────────────────────────────────────
@@ -323,8 +323,8 @@ export function Projects() {
     <section id="projects" className="relative py-28 overflow-hidden">
       {/* Global ambient glows */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-violet-500/5 blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-rose-500/5 blur-[100px]" />
+        <div className="absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-primary/5 blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-primary/5 blur-[100px]" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6">

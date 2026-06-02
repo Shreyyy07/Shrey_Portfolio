@@ -64,7 +64,7 @@ function StatusBar() {
 function IdentityCard() {
   const role = useRotator(PERSONAL_INFO.rotatingKeywords, 2200);
   return (
-    <div className="relative grid grid-cols-1 items-center gap-8 overflow-hidden border border-foreground/10 bg-foreground/[0.02] p-7 md:grid-cols-[1fr_0.75fr] lg:gap-16 lg:p-12">
+    <div className="relative grid grid-cols-1 items-center gap-8 overflow-hidden border border-foreground/10 bg-foreground/[0.02] p-7 md:grid-cols-[1fr_0.55fr] lg:gap-8 lg:p-12">
       <div className="relative z-10 flex h-full flex-col justify-between">
         <div>
           <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-foreground/40">

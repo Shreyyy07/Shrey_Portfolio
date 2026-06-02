@@ -46,12 +46,12 @@ const SKILL_ICONS: Record<string, string> = {
 
 // Category accent colors (oklch)
 const CATEGORY_COLORS: Record<string, { glow: string; border: string; bg: string; text: string }> = {
-  "Programming Languages": { glow: "rgba(250,204,21,0.15)", border: "rgba(250,204,21,0.3)", bg: "rgba(250,204,21,0.08)", text: "#facc15" },
-  "Frontend":              { glow: "rgba(96,165,250,0.15)", border: "rgba(96,165,250,0.3)", bg: "rgba(96,165,250,0.08)", text: "#60a5fa" },
-  "Backend":               { glow: "rgba(52,211,153,0.15)", border: "rgba(52,211,153,0.3)", bg: "rgba(52,211,153,0.08)", text: "#34d399" },
-  "Databases":             { glow: "rgba(167,139,250,0.15)", border: "rgba(167,139,250,0.3)", bg: "rgba(167,139,250,0.08)", text: "#a78bfa" },
-  "DevOps & Cloud":        { glow: "rgba(251,146,60,0.15)", border: "rgba(251,146,60,0.3)", bg: "rgba(251,146,60,0.08)", text: "#fb923c" },
-  "Tools & Platforms":     { glow: "rgba(244,114,182,0.15)", border: "rgba(244,114,182,0.3)", bg: "rgba(244,114,182,0.08)", text: "#f472b6" },
+  "Programming Languages": { glow: "rgba(255,255,255,0.1)", border: "rgba(255,255,255,0.2)", bg: "rgba(255,255,255,0.05)", text: "#ffffff" },
+  "Frontend":              { glow: "rgba(255,255,255,0.1)", border: "rgba(255,255,255,0.2)", bg: "rgba(255,255,255,0.05)", text: "#ffffff" },
+  "Backend":               { glow: "rgba(255,255,255,0.1)", border: "rgba(255,255,255,0.2)", bg: "rgba(255,255,255,0.05)", text: "#ffffff" },
+  "Databases":             { glow: "rgba(255,255,255,0.1)", border: "rgba(255,255,255,0.2)", bg: "rgba(255,255,255,0.05)", text: "#ffffff" },
+  "DevOps & Cloud":        { glow: "rgba(255,255,255,0.1)", border: "rgba(255,255,255,0.2)", bg: "rgba(255,255,255,0.05)", text: "#ffffff" },
+  "Tools & Platforms":     { glow: "rgba(255,255,255,0.1)", border: "rgba(255,255,255,0.2)", bg: "rgba(255,255,255,0.05)", text: "#ffffff" },
 };
 
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {

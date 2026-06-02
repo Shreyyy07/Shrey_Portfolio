@@ -18,9 +18,6 @@ export function Footer() {
             </a>
           </div>
           <div className="flex items-center gap-4">
-            <p className="flex items-center gap-1 text-sm text-muted-foreground">
-              Built with <Heart className="h-3 w-3 text-destructive" /> using React & Tailwind
-            </p>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="rounded-full bg-primary/10 p-2 text-primary transition-all hover:bg-primary/20"
