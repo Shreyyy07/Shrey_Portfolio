@@ -57,7 +57,7 @@ function BlogPage() {
 
   return (
     <div className="pt-24">
-      <section className="relative w-full bg-background py-16">
+      <section className="relative w-full bg-transparent py-16">
         <div className="mx-auto max-w-7xl px-6">
           {/* Header */}
           <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b border-foreground/10 pb-6">

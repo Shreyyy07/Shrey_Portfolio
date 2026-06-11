@@ -45,11 +45,17 @@ function VideosPage() {
     try {
       const data = await fetchYouTubeVideos();
       
-      // Override default YouTube thumbnails with the provided custom high-quality images
-      // User provided a1.png (oldest) to a12.png (newest). Assuming RSS feed is newest-first.
+      // Get all available thumbnails using Vite's glob
+      const images = import.meta.glob('/public/videos/a*.png');
+      const totalImages = Object.keys(images).length || 14; // fallback to 14 if glob fails
+      
       const mappedData = data.map((v, i) => {
-        const customNumber = 12 - i;
-        if (customNumber >= 1 && customNumber <= 12) {
+        // If they have 14 images, totalImages is 14.
+        // The newest video in the feed (i=0) should get a14.png (assuming no feed overflow)
+        // If feed overflows (data.length > 15 but we have more images), we assume the newest is always `totalImages - i`.
+        // This makes it completely automatic when they drop a new aX.png into the folder!
+        const customNumber = totalImages - i;
+        if (customNumber >= 1) {
           return { ...v, thumbnail: `/videos/a${customNumber}.png` };
         }
         return v;
@@ -85,7 +91,7 @@ function VideosPage() {
 
   return (
     <div className="pt-24">
-      <section className="relative w-full bg-background py-16">
+      <section className="relative w-full bg-transparent py-16">
         <div className="mx-auto max-w-7xl px-6">
           {/* Header */}
           <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b border-foreground/10 pb-6">
