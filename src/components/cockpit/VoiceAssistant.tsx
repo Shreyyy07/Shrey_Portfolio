@@ -27,7 +27,7 @@ const QA: Array<{ keys: string[]; answer: string }> = [
   },
   {
     keys: ["cgpa", "grade", "marks", "gpa"],
-    answer: "Shrey holds a 9.30 CGPA at SRM Institute of Science and Technology. Pretty impressive!",
+    answer: "Shrey holds a 9.36 CGPA at SRM Institute of Science and Technology. Pretty impressive!",
   },
   {
     keys: ["college", "university", "study", "education", "srm"],
@@ -257,93 +257,90 @@ export function VoiceAssistant() {
   };
 
   // ── Mic button ─────────────────────────────────────────────────────────────
-  // Creates a FRESH recognition instance each time — most reliable approach
-  const startListening = () => {
+  const currentRecRef = useRef<any>(null);
+
+  const stopCurrentRec = () => {
+    try { currentRecRef.current?.stop(); } catch {}
+    currentRecRef.current = null;
+    setListening(false);
+  };
+
+  const startRec = () => {
     if (typeof window === "undefined") return;
     const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-    if (!SR) return;
+    if (!SR) {
+      addRobMessage("Voice not supported in this browser. Try Chrome or Edge!");
+      return;
+    }
+
+    stopCurrentRec();
 
     const rec = new SR();
     rec.lang = "en-US";
     rec.continuous = false;
-    rec.interimResults = false;
-    rec.maxAlternatives = 1;
+    rec.interimResults = true;    // picks up partial speech sooner
+    rec.maxAlternatives = 3;      // try more alternatives
+
+    currentRecRef.current = rec;
 
     rec.onstart = () => setListening(true);
 
     rec.onresult = (e: any) => {
-      const text: string = e.results[0][0].transcript;
-      setListening(false);
-      handleCommand(text);
+      // Grab the best final result available
+      let final = "";
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        if (e.results[i].isFinal) {
+          final += e.results[i][0].transcript;
+        }
+      }
+      if (final.trim()) {
+        stopCurrentRec();
+        handleCommand(final.trim());
+      }
+      // If only interim results so far, keep listening
     };
 
     rec.onerror = (e: any) => {
-      setListening(false);
       if (e.error === "not-allowed" || e.error === "service-not-allowed") {
-        addRobMessage("Oops! Microphone access was denied. Please allow mic permissions and try again.");
+        stopCurrentRec();
+        addRobMessage("Mic access denied! Please click the lock icon in your browser address bar and allow microphone access, then try again.");
       } else if (e.error === "no-speech") {
-        addRobMessage("I didn't hear anything. Tap the mic and try again!");
+        // Silently restart — don't show an error, just retry once
+        stopCurrentRec();
+        // Give user a moment then auto-retry once
+        setTimeout(() => {
+          if (!currentRecRef.current) {
+            startRec();
+          }
+        }, 300);
+      } else if (e.error === "aborted") {
+        stopCurrentRec();
+      } else {
+        stopCurrentRec();
       }
     };
 
-    rec.onend = () => setListening(false);
+    rec.onend = () => {
+      // If we ended without a result and we're still in listening state, auto-restart
+      if (currentRecRef.current === rec) {
+        currentRecRef.current = null;
+        setListening(false);
+      }
+    };
 
     try {
       rec.start();
     } catch {
-      setListening(false);
-      addRobMessage("Couldn't start the microphone. Please try again!");
+      stopCurrentRec();
+      addRobMessage("Couldn't start the mic. Please try again!");
     }
   };
 
-  const stopListening = (rec: any) => {
-    try { rec?.stop(); } catch {}
-    setListening(false);
-  };
-
-  // Store current rec instance to allow stopping
-  const currentRecRef = useRef<any>(null);
-
   const toggleMic = () => {
     if (listening) {
-      stopListening(currentRecRef.current);
+      stopCurrentRec();
     } else {
-      const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-      if (!SR) return;
-
-      const rec = new SR();
-      rec.lang = "en-US";
-      rec.continuous = false;
-      rec.interimResults = false;
-      rec.maxAlternatives = 1;
-
-      currentRecRef.current = rec;
-
-      rec.onstart = () => setListening(true);
-
-      rec.onresult = (e: any) => {
-        const text: string = e.results[0][0].transcript;
-        setListening(false);
-        handleCommand(text);
-      };
-
-      rec.onerror = (e: any) => {
-        setListening(false);
-        if (e.error === "not-allowed" || e.error === "service-not-allowed") {
-          addRobMessage("Mic access denied! Please allow microphone permissions in your browser and try again.");
-        } else if (e.error === "no-speech") {
-          addRobMessage("I didn't hear anything — tap the mic and speak clearly!");
-        }
-      };
-
-      rec.onend = () => setListening(false);
-
-      try {
-        rec.start();
-      } catch {
-        setListening(false);
-        addRobMessage("Couldn't start the mic. Please try again!");
-      }
+      startRec();
     }
   };
 
@@ -354,13 +351,13 @@ export function VoiceAssistant() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Open Rob voice assistant"
-        className="fixed bottom-6 right-6 z-[80] flex h-16 w-16 items-center justify-center rounded-full bg-background/80 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-110"
+        className="fixed bottom-6 right-6 z-[80] flex h-20 w-20 items-center justify-center rounded-full bg-background/80 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-110"
         style={{
           border: "2px solid rgba(0,217,255,0.35)",
           boxShadow: open ? "0 0 32px rgba(0,217,255,0.35)" : "0 0 16px rgba(0,217,255,0.1)",
         }}
       >
-        <img src={robAvatar} alt="Rob" className="h-12 w-12 rounded-full object-cover" />
+        <img src={robAvatar} alt="Rob" className="h-16 w-16 rounded-full object-cover" />
 
         {listening && (
           <>

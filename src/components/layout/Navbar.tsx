@@ -1,16 +1,21 @@
 import { useState, useEffect } from "react";
-import { Link } from "@tanstack/react-router";
-import { Command, Menu, X } from "lucide-react";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { Menu, X } from "lucide-react";
 import { NAV_LINKS, PERSONAL_INFO } from "@/lib/constants";
 import { useMountAnimation } from "@/hooks/use-animations";
 import { useCockpit } from "@/contexts/CockpitContext";
-import { RecruiterToggle } from "@/components/cockpit/RecruiterToggle";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const show = useMountAnimation(100);
-  const { togglePalette } = useCockpit();
+  const { recruiterMode, setRecruiterMode } = useCockpit();
+  const navigate = useNavigate();
+
+  const handleRecruiterToggle = () => {
+    setRecruiterMode(!recruiterMode);
+    navigate({ to: "/" });
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -52,13 +57,15 @@ export function Navbar() {
 
         <div className="ml-auto hidden shrink-0 items-center gap-2 md:flex">
           <button
-            onClick={togglePalette}
-            className="inline-flex items-center gap-2 whitespace-nowrap border border-foreground/15 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-foreground/55 transition-all hover:border-foreground/40 hover:text-foreground"
+            onClick={handleRecruiterToggle}
+            className="group inline-flex items-center gap-2 whitespace-nowrap border border-foreground/15 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground/60 transition-all hover:border-foreground/40 hover:text-foreground"
+            title="Toggle Recruiter Mode"
           >
-            <Command className="h-3 w-3" />
-            <kbd className="border border-foreground/15 px-1 font-mono text-[9px] tracking-widest">⌘K</kbd>
+            <span className="hidden sm:inline">{recruiterMode ? "Exit" : "Recruiter"} Mode</span>
+            <span className={`relative ml-1 h-3 w-6 rounded-full border border-foreground/25 transition-colors ${recruiterMode ? "bg-foreground" : "bg-transparent"}`}>
+              <span className={`absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full transition-all ${recruiterMode ? "left-3 bg-background" : "left-0.5 bg-foreground/60"}`} />
+            </span>
           </button>
-          <RecruiterToggle />
           <a
             href={PERSONAL_INFO.resume}
             target="_blank"

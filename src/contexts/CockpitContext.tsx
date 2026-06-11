@@ -16,13 +16,19 @@ export function CockpitProvider({ children }: { children: React.ReactNode }) {
 
   // Hydrate persisted recruiter mode
   useEffect(() => {
-    const stored = typeof window !== "undefined" ? localStorage.getItem("recruiterMode") : null;
-    if (stored === "1") setRecruiterModeState(true);
+    try {
+      const stored = typeof window !== "undefined" ? localStorage.getItem("recruiterMode") : null;
+      if (stored === "1") setRecruiterModeState(true);
+    } catch {
+      // Ignore if localStorage is blocked (e.g., incognito or cookie blockers)
+    }
   }, []);
 
   const setRecruiterMode = useCallback((v: boolean) => {
     setRecruiterModeState(v);
-    if (typeof window !== "undefined") localStorage.setItem("recruiterMode", v ? "1" : "0");
+    try {
+      if (typeof window !== "undefined") localStorage.setItem("recruiterMode", v ? "1" : "0");
+    } catch {}
   }, []);
 
   const togglePalette = useCallback(() => setPaletteOpen((v) => !v), []);

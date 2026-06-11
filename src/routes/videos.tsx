@@ -17,7 +17,9 @@ export const Route = createFileRoute("/videos")({
 
 function formatDate(d: string) {
   try {
-    return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+    const dt = new Date(d);
+    if (isNaN(dt.getTime())) return d;
+    return dt.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
   } catch {
     return d;
   }
