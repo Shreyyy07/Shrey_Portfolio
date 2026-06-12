@@ -13,7 +13,7 @@ export const PERSONAL_INFO = {
     "Based in Chennai, Tamil Nadu, I've worked on diverse projects ranging from AI-powered communication platforms to automated DevOps pipelines. My experience spans full-stack development at FOZZIL and automation engineering at Apollo Tyres Global R&D, where I optimized workflows and enhanced tool performance.",
     "When I'm not coding, you'll find me contributing to open source, solving algorithmic challenges on LeetCode, or exploring the latest web technologies and AI trends."
   ],
-  resume: "https://drive.google.com/file/d/1P30ftvhmBdX9Ik62fN3fpbKoXLJjYwow/view?usp=sharing",
+  resume: "https://drive.google.com/file/d/1Oanzt-uRQhMa4OSE2ABv_fqoFhcqkEfP/view?usp=sharing",
   social: {
     github: "https://github.com/Shreyyy07",
     linkedin: "https://www.linkedin.com/in/shrey-joshi-1b038a249/",
